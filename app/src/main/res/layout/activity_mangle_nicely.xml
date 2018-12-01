@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <Button
         android:id="@+id/reset_button_id"
         android:layout_width="wrap_content"
@@ -37,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/reset_button_id" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/add_photo_button_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="39dp"
@@ -45,4 +46,18 @@
         android:text="@string/add_photo"
         app:layout_constraintStart_toEndOf="@+id/send_mangle_button_id"
         app:layout_constraintTop_toBottomOf="@+id/re_mangle_button_id" />
+
+    <TextView
+        android:id="@+id/mangle_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="193dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="191dp"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

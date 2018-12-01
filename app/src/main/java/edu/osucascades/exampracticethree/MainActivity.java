@@ -1,5 +1,6 @@
 package edu.osucascades.exampracticethree;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mMangleRudelyButton;
     private EditText mFirstNameText;
 
+    private static final int REQUEST_CODE = 0;
+    private static final String KEY_INDEX = "index";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Intent intent = new Intent(MainActivity.this, MangleNicely.class);
                     intent.putExtra("FirstName", mFirstNameText.getText().toString());
-                    startActivity(intent);
+                    startActivityForResult(intent, REQUEST_CODE);
                 }
             }
         });
@@ -45,10 +48,29 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Intent intent = new Intent(MainActivity.this, MangleRudely.class);
                     intent.putExtra("FirstName", mFirstNameText.getText().toString());
-                    startActivity(intent);
+                    startActivityForResult(intent, REQUEST_CODE);
                 }
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        } else {
+            if (requestCode == REQUEST_CODE) {
+                if (data == null) {
+                    return;
+                }
+            }
+        }
+        mFirstNameText.setText("");
     }
 
 }
