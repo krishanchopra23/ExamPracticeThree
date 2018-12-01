@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ExamPracticeThree</string>
+    <string name="app_title">Name Mangler</string>
+    <string name="first_name">First name:</string>
+    <string name="mangle_nicely_button">Mangle Nicely</string>
+    <string name="mangle_rudely_button">Mangle Rudely</string>
+    <string name="warning_toast">First name input can not be empty</string>
+    <string name="reset">Reset</string>
+    <string name="re_mangle">Re-mangle</string>
+    <string name="send_mangle">Send Mangle</string>
+    <string name="add_photo">Add photo</string>
+
+</resources>
