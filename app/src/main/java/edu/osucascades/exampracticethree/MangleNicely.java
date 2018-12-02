@@ -12,6 +12,15 @@ public class MangleNicely extends AppCompatActivity {
 
     private Button mResetButton;
     private TextView mMangleNicelyName;
+    private Button mRemangleButton;
+
+    private String[] lastNames = new String[] {
+            "Beautiful",
+            "Handsome",
+            "Adorable",
+            "Tall",
+            "Magnificent"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +28,19 @@ public class MangleNicely extends AppCompatActivity {
         setContentView(R.layout.activity_mangle_nicely);
 
         final String firstName = getIntent().getStringExtra("FirstName");
-        String mangleName = firstName;
+        String mangleName = firstName + ' ' + lastNames[(int)(Math.random() * lastNames.length)];
 
         mMangleNicelyName = (TextView) findViewById(R.id.mangle_name);
         mMangleNicelyName.setText(mangleName);
+
+        mRemangleButton = (Button) findViewById(R.id.re_mangle_button_id);
+        mRemangleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newMangleName = firstName + ' ' + lastNames[(int)(Math.random() * lastNames.length)];
+                mMangleNicelyName.setText(newMangleName);
+            }
+        });
 
         mResetButton = (Button) findViewById(R.id.reset_button_id);
         mResetButton.setOnClickListener(new View.OnClickListener() {
