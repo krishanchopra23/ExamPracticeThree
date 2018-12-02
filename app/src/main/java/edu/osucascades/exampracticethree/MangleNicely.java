@@ -13,6 +13,7 @@ public class MangleNicely extends AppCompatActivity {
     private Button mResetButton;
     private TextView mMangleNicelyName;
     private Button mRemangleButton;
+    private Button mSendMangleButton;
 
     private String[] lastNames = new String[] {
             "Beautiful",
@@ -49,6 +50,16 @@ public class MangleNicely extends AppCompatActivity {
                 Intent resetIntent = new Intent();
                 setResult(Activity.RESULT_OK, resetIntent);
                 finish();
+            }
+        });
+
+        mSendMangleButton = (Button) findViewById(R.id.send_mangle_button_id);
+        mSendMangleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                startActivity(i);
             }
         });
     }
