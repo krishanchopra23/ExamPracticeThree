@@ -6,14 +6,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MangleNicely extends AppCompatActivity {
+
+    private static final String LAST_NAME = "last_name";
 
     private Button mResetButton;
     private TextView mMangleNicelyName;
     private Button mRemangleButton;
     private Button mSendMangleButton;
+    private String mLastName;
 
     private String[] lastNames = new String[] {
             "Beautiful",
@@ -29,10 +33,18 @@ public class MangleNicely extends AppCompatActivity {
         setContentView(R.layout.activity_mangle_nicely);
 
         final String firstName = getIntent().getStringExtra("FirstName");
-        String mangleName = firstName + ' ' + lastNames[(int)(Math.random() * lastNames.length)];
+        //String mangleName = firstName + ' ' + lastNames[(int)(Math.random() * lastNames.length)];
 
         mMangleNicelyName = (TextView) findViewById(R.id.mangle_name);
-        mMangleNicelyName.setText(mangleName);
+        //mMangleNicelyName.setText(mangleName);
+
+        if (savedInstanceState != null) {
+            mLastName = savedInstanceState.getString(LAST_NAME);
+            mMangleNicelyName.setText(getMangledName(firstName, mLastName));
+        } else {
+            mLastName = firstName + ' ' + lastNames[(int)(Math.random() * lastNames.length)];
+            mMangleNicelyName.setText(getMangledName(firstName, mLastName));
+        }
 
         mRemangleButton = (Button) findViewById(R.id.re_mangle_button_id);
         mRemangleButton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +74,17 @@ public class MangleNicely extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private String getMangledName(String firstName, String lastName) {
+        MangleName mangledName = new MangleName(firstName, lastName);
+        return mangledName.getMangledName();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(LAST_NAME, mLastName);
     }
 
 }
